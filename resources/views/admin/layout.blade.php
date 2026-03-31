@@ -230,6 +230,27 @@
                   <p>Data Barang </p>
                 </a>
               </li>
+              {{-- Penambahan navbar ke form hitung --}}
+              <li class="nav-item">
+                <a href="{{route('formhitung')}}" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>Form Hitung </p>
+                </a>
+              </li>
+              {{-- Penambahan navbar ke form register --}}
+              <li class="nav-item">
+                <a href="{{route('formregister')}}" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>Form Register </p>
+                </a>
+              </li>
+              {{-- Penambahan navbar ke tabel data gempa --}}
+              <li class="nav-item">
+                <a href="{{route('datagempa')}}" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>Data Gempa JSON </p>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
