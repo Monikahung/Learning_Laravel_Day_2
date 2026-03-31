@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BljrController;
 // Menambahkan use untuk mengimpor JurusanController
 use App\Http\Controllers\JurusanController;
+// Menambahkan use untuk mengimpor MahasiswaController
+use App\Http\Controllers\MahasiswaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -105,3 +107,11 @@ Route::post('/jurusan/store', [JurusanController::class, 'store']);
 Route::get('/jurusan/edit/{id}', [JurusanController::class, 'edit']);
 Route::post('/jurusan/update/{id}', [JurusanController::class, 'update']);
 Route::get('/jurusan/delete/{id}', [JurusanController::class, 'destroy']);
+
+// Route untuk resource mahasiswa
+Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
+Route::get('/mahasiswa/create', [MahasiswaController::class, 'create']);
+Route::post('/mahasiswa/store', [MahasiswaController::class, 'store']);
+Route::get('/mahasiswa/edit/{id}', [MahasiswaController::class, 'edit']);
+Route::post('/mahasiswa/update/{id}', [MahasiswaController::class, 'update']);
+Route::get('/mahasiswa/delete/{id}', [MahasiswaController::class, 'destroy']);
