@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 // Menambahkan use untuk mengimpor BljrController
 use App\Http\Controllers\BljrController;
+// Menambahkan use untuk mengimpor JurusanController
+use App\Http\Controllers\JurusanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -95,3 +97,11 @@ Route::get(
     '/listgempa',
     [BljrController::class, 'listgempa']
 )->name(name: 'datagempa');
+
+// Route untuk resource jurusan
+Route::get('/jurusan', [JurusanController::class, 'index']);
+Route::get('/jurusan/create', [JurusanController::class, 'create']);
+Route::post('/jurusan/store', [JurusanController::class, 'store']);
+Route::get('/jurusan/edit/{id}', [JurusanController::class, 'edit']);
+Route::post('/jurusan/update/{id}', [JurusanController::class, 'update']);
+Route::get('/jurusan/delete/{id}', [JurusanController::class, 'destroy']);
