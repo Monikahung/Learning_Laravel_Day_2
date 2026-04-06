@@ -91,7 +91,14 @@
                     <td>{{ $user->no_hp }}</td>
                     {{-- Menampilkan data user berupa email --}}
                     <td>{{ $user->email }}</td>
-                    <td></td>
+                    <td>
+                      <a href="{{ route('useredit', $user->id) }}">Edit</a> |
+                      <form action="{{ route('userdelete', $user->id) }}" style="display: inline;" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
+                      </form>
+                    </td>
                   </tr>
                 @endforeach
               </tbody>
