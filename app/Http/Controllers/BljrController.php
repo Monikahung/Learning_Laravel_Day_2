@@ -68,12 +68,14 @@ class BljrController extends Controller
         return view('admin.formhitung', compact('number1', 'number2', 'result'));
     }
 
-    // Function fregister untuk menampilkan view formregister yang berada di dalam folder admin (form registrasi)
+    // Function fregister untuk menampilkan view formregister yang berada di dalam folder admin (form registrasi) dan terdapat data dari tabel 'data_user' dari database
     function fregister(){
-        return view('admin.formregister');
+        // Mengambil semua data dari UserModel
+        $users = UserModel::all();
+        return view('admin.formregister', compact('users'));
     }
 
-    // Function daftar untuk menerima data dari formregister, melakukan validasi, dan mengembalikan pesan sukses jika pendaftaran berhasil
+    // Function daftar untuk menerima data dari formregister, melakukan validasi, memasukkan data ke dalam tabel 'data_user' melalui UserModel, dan mengembalikan pesan sukses jika pendaftaran berhasil
     function daftar(Request $request){
         // Validasi input nama, email, dan password
         $request->validate([

@@ -16,16 +16,16 @@
               <!-- form start -->
               {{-- Menampilkan pesan sukses jika pendaftaran berhasil dari function daftar (route /prosesregister) --}}
               @if(session('success'))
-              <p style="color: green;">{{ session('success') }}</p>
+                <p style="color: green;">{{ session('success') }}</p>
               @endif
 
               {{-- Menampilkan eror ketika validasi dari function daftar (route /prosesregister) --}}
               @if($errors->any())
-              <ul style="color:red;">
-                @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-              </ul>
+                <ul style="color:red;">
+                  @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
               @endif
 
               {{-- Form untuk mengirimkan data (post) ke route prosesregister --}}
@@ -55,7 +55,8 @@
                   {{-- Menginput konfirmasi password --}}
                   <div class="form-group">
                     <label for="password_confirmation">Konfirmasi Password</label>
-                    <input type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password" required>
+                    <input type="password" class="form-control" name="password_confirmation"
+                      placeholder="Konfirmasi Password" required>
                   </div>
                 </div>
 
@@ -65,6 +66,36 @@
                 </div>
               </form>
             </div>
+          </div>
+
+          <div class="col-sm-12">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nama</th>
+                  <th>No HP</th>
+                  <th>Email</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{-- Perulangan untuk menampilkan data user --}}
+                @foreach ($users as $user)
+                  <tr>
+                    {{-- Menampilkan data user berupa id --}}
+                    <td>{{ $user->id }}</td>
+                    {{-- Menampilkan data user berupa nama --}}
+                    <td>{{ $user->nama }}</td>
+                    {{-- Menampilkan data user berupa no hp --}}
+                    <td>{{ $user->no_hp }}</td>
+                    {{-- Menampilkan data user berupa email --}}
+                    <td>{{ $user->email }}</td>
+                    <td></td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
