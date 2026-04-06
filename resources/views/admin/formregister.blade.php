@@ -14,10 +14,6 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              {{-- Menampilkan pesan sukses jika pendaftaran berhasil dari function daftar (route /prosesregister) --}}
-              @if(session('success'))
-                <p style="color: green;">{{ session('success') }}</p>
-              @endif
 
               {{-- Menampilkan eror ketika validasi dari function daftar (route /prosesregister) --}}
               @if($errors->any())
@@ -67,6 +63,11 @@
               </form>
             </div>
           </div>
+
+          {{-- Menampilkan pesan sukses jika pendaftaran berhasil dari function daftar (route /prosesregister) --}}
+          @if(session('success'))
+            <p style="color: green;">{{ session('success') }}</p>
+          @endif
 
           <div class="col-sm-12">
             <table id="example1" class="table table-bordered table-striped">
