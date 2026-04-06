@@ -77,6 +77,8 @@ class BljrController extends Controller
         $request->validate([
             // Nama wajib diisi, minimal 5 karakter, tipe data string, dan maksimal 255 karakter
             'nama' => 'required|min:5|string|max:255',
+            // No HP wajib diisi, minimal 5 karakter, tipe data string, dan maksimal 255 karakter
+            'no_hp' => 'required|min:5|string|max:255',
             // Email wajib diisi, tipe data email, dan harus unik di tabel users pada kolom email
             'email' => 'required|email|unique:users,email',
             // Password wajib diisi, minimal 6 karakter, dan harus sama dengan input password_confirmation
