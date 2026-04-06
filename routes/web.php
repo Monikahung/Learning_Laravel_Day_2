@@ -94,6 +94,24 @@ Route::post(
     [BljrController::class, 'daftar']
 )->name('prosesregister');
 
+// Membuat route /edituser/{id} untuk menampilkan form edit data user yang dipilih
+Route::get(
+    '/edituser/{id}',
+    [BljrController::class, 'editUser']
+)->name('useredit');
+
+// Membuat route /updateuser/{id} untuk memperbarui data user yang telah diedit
+Route::post(
+    '/updateuser/{id}',
+    [BljrController::class, 'updateUser']
+)->name('updateuser');
+
+// Membuat route /userdelete/{id} untuk menghapus data user dari tabel 'data_user'
+Route::Delete(
+    '/userdelete/{id}',
+    [BljrController::class, 'deleteUser']
+)->name('userdelete');
+
 // Membuat route /listgempa untuk menampilkan hasil dari function listgempa di controller BljrController (view datagempa di dalam folder admin berupa table)
 Route::get(
     '/listgempa',
