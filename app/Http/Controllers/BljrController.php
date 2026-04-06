@@ -104,6 +104,58 @@ class BljrController extends Controller
         return redirect()->route('formregister')->with('success', 'Pendaftaran berhasil');
     }
 
+    // Function editUser untuk mengambil data berdasarkan id dari tabel 'data_user' dan menampungnya ke dalam array, lalu mengembalikannya ke view edituser.blade.php
+    function editUser($id){
+        // Mengambil data user berdasarkan id
+        $users = UserModel::where('id', $id)->first();
+
+        // Tampung data ke dalam array
+        $data = [
+            'user' => $users
+        ];
+
+        return view('admin.edituser', $data);
+    }
+
+    // Function updateUser untuk mengambil data yang dikirim dan menampungnya ke dalam array, lalu memperbarui datanya berdasarkan id dan mengembalikannya ke view formregister.blade.php
+    function updateUser(Request $request, $id){
+        // Ambil nilai yang dikirim
+        $nama = $request->input('nama');
+        $no_hp = $request->input('no_hp');
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        // Tampung data ke dalam array
+        $dataUpdate = [
+            'nama' => $nama,
+            'no_hp' => $no_hp,
+            'email' => $email,
+        ];
+
+        // Jika password diinput pengguna, maka juga diupdate
+        if ($password){
+            $dataUpdate['password'] = Hash::make($password);
+        }
+
+        // Perbarui data berdasarkan id
+        UserModel::where('id', $id) -> update($dataUpdate);
+
+        // Direct ke route formregister
+        return redirect()->route('formregister')->with('success', 'Data Berhasil Diubah');
+    }
+
+    // Function deleteUser untuk menemukan data user berdasarkan id, kemudian menghapusnya dari database dan mengembalikan ke view formregister.blade.php
+    function deleteUser($id){
+        // Menemukan data user berdasarkan id
+        $user = UserModel::findOrFail($id);
+        
+        // Menghapus data user dari database
+        $user->delete();
+        
+        // Direct ke route formregister
+        return redirect()->route('formregister')->with('success', 'Data Berhasil Dihapus');
+    }
+
     // Function listgempa untuk menampilkan view datagempa yang berada di dalam folder admin dengan data gempa terkini yang diambil dari API BMKG
     function listgempa(){
         // Parsing url API BMKG untuk mendapatkan data gempa terkini
