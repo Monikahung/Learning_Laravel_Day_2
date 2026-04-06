@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\UserModel;
+use Illuminate\Support\Facades\Hash;
 
 class BljrController extends Controller
 {
@@ -84,6 +86,17 @@ class BljrController extends Controller
             // Password wajib diisi, minimal 6 karakter, dan harus sama dengan input password_confirmation
             'password' => 'required|min:6|confirmed',
         ]);
+
+        // Variabel dataInsert yang berisi field-field untuk dimasukkan ke dalam tabel 'data_user'
+        $dataInsert = [
+            'nama' => $request->nama,
+            'no_hp' => $request->no_hp,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ];
+
+        // Masukkan data ke dalam database melalui model UserModel
+        UserModel::insert($dataInsert);
 
         // Jika validasi berhasil, data akan diproses dan kemudian diarahkan kembali ke formregister dengan pesan sukses
         return redirect()->route('formregister')->with('success', 'Pendaftaran berhasil');
