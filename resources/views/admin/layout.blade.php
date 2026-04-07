@@ -187,8 +187,9 @@
         <div class="image">
           <img src="{{ asset('template/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
+        {{-- Menampilkan nama dari database berdasarkan session login --}}
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ Session::get('ambilUser')->nama }}</a>
         </div>
       </div>
 
