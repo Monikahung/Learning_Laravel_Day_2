@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserModel;
 use Illuminate\Support\Facades\Hash;
+use App\Rules\LoginCheck;
+use Illuminate\Support\Facades\Session;
 
 class BljrController extends Controller
 {
@@ -37,6 +39,25 @@ class BljrController extends Controller
     // Function login untuk menampilkan view login yang berada di dalam folder admin
     function login(){
         return view('admin.login');
+    }
+
+    function proseslogin(Request $request){
+        $request->validate([
+            // Email wajib diisi dan tipe data email
+            'email' => 'required|email',
+            // Password wajib diisi dan mengakses rule LoginCheck
+            'password' => ['required', new LoginCheck($request)]
+        ]);
+
+        return redirect()->route('dashboardadmin');
+    }
+
+    function logout() {
+        // Menghilangkan session
+        Session::flush();
+
+        // Kembali ke halaman login
+        return redirect()->route('loginadmin');
     }
 
     // Function listbarang untuk menampilkan view databarang yang berada di dalam folder admin (tabel)
