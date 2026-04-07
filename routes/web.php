@@ -62,7 +62,19 @@ Route::get(
 Route::get(
     '/login',
     [BljrController::class, 'login']
-);
+)->name('loginadmin');
+
+// Membuat route /proseslogin untuk mengirimkan data ke function proseslogin yang ada di controller BljrController
+Route::post(
+    '/proseslogin',
+    [BljrController::class, 'proseslogin']
+)->name('loginproses');
+
+// Membuat route /logout untuk mengarahkan ke function logout yang ada di controller BljrController
+Route::get(
+    '/logout',
+    [BljrController::class, 'logout']
+)->name('logout');
 
 // Membuat route /listbarang untuk menampilkan hasil dari function listbarang di controller BljrController (view listbarang di dalam folder admin berupa table)
 Route::get(
