@@ -252,6 +252,13 @@
                   <p>Data Gempa JSON </p>
                 </a>
               </li>
+              {{-- Penambahan navbar ke halaman index dokumen --}}
+              <li class="nav-item">
+                <a href="{{route('dokumen.index')}}" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>Dokumen </p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="{{route('logout')}}" class="nav-link">
                   <i class="nav-icon fas fa-th"></i>
