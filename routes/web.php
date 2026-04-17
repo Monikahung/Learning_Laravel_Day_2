@@ -1,15 +1,18 @@
 <?php
 
-use App\Http\Controllers\BljrController;
+// Menambahkan use untuk mengimpor DokumenController
+use App\Http\Controllers\DokumenController;
 // Menambahkan use untuk mengimpor BljrController
-use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\BljrController;
 // Menambahkan use untuk mengimpor JurusanController
-use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\JurusanController;
 // Menambahkan use untuk mengimpor MahasiswaController
+use App\Http\Controllers\MahasiswaController;
+// Menambahkan use untuk mengimpor LoggedIn dari Middleware
 use App\Http\Middleware\LoggedIn;
 // Menambahkan use untuk mengimpor LoginCheck dari Middleware
 use App\Http\Middleware\LoginCheck;
-// Menambahkan use untuk mengimpor LoggedIn dari Middleware
+// Mengimpor library Route
 use Illuminate\Support\Facades\Route;
 
 // ============================================================= //
@@ -141,6 +144,42 @@ Route::middleware(LoggedIn::class)->group(function () {
         '/listgempa',
         [BljrController::class, 'listgempa']
     )->name(name: 'datagempa');
+
+    // Route untuk menampilkan halaman index dokumen dari function index di controller DokumenController
+    Route::get(
+        '/dokumen',
+        [DokumenController::class, 'index']
+    )->name(name: 'dokumen.index');
+
+    // Route untuk menampilkan halaman form tambah dokumen
+    Route::get(
+        '/dokumencreate',
+        [DokumenController::class, 'create']
+    )->name('dokumen.create');
+
+    // Route untuk memproses penyimpanan data dokumen
+    Route::post(
+        '/dokumenstore',
+        [DokumenController::class, 'store']
+    )->name('dokumen.store');
+
+    // Route untuk menampilkan halaman form edit dokumen
+    Route::get(
+        '/dokumenedit/{id}',
+        [DokumenController::class, 'edit']
+    )->name('dokumen.edit');
+
+    // Route untuk memproses perubahan data dokumen
+    Route::post(
+        '/dokumenupdate/{id}',
+        [DokumenController::class, 'update']
+    )->name('dokumen.update');
+
+    // Route untuk menghapus data dokumen
+    Route::Delete(
+        '/dokumendelete/{id}',
+        [DokumenController::class, 'delete']
+    )->name('dokumen.delete');
 });
 // ============================================================= //
 
